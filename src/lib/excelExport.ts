@@ -21,11 +21,14 @@ export class ExcelExporter {
     this.workbook = XLSX.utils.book_new();
   }
 
-  addSheet(config: ExcelSheet) {
-    // Prepare data with headers
-    const headers = config.columns.map(col => col.header);
-    const formattedData = config.data.map(row => {
-      return config.columns.map(col => {
+  addSheet(config: ExcelSheet, includeRowNumber: boolean = true) {
+    // Prepare data with headers - add "Nº" column for row enumeration
+    const headers = includeRowNumber 
+      ? ['Nº', ...config.columns.map(col => col.header)]
+      : config.columns.map(col => col.header);
+    
+    const formattedData = config.data.map((row, index) => {
+      const rowData = config.columns.map(col => {
         const value = row[col.key];
         
         // Format based on type
@@ -46,6 +49,9 @@ export class ExcelExporter {
             return value;
         }
       });
+      
+      // Add row number at the beginning if includeRowNumber is true
+      return includeRowNumber ? [index + 1, ...rowData] : rowData;
     });
 
     // Combine headers and data
@@ -54,18 +60,19 @@ export class ExcelExporter {
     // Create worksheet
     const ws = XLSX.utils.aoa_to_sheet(wsData);
 
-    // Set column widths
-    const colWidths = config.columns.map(col => ({ 
-      wch: col.width || 15 
-    }));
+    // Set column widths - add width for "Nº" column
+    const colWidths = includeRowNumber 
+      ? [{ wch: 6 }, ...config.columns.map(col => ({ wch: col.width || 15 }))]
+      : config.columns.map(col => ({ wch: col.width || 15 }));
     ws['!cols'] = colWidths;
 
     // Add autofilter to header row
+    const totalColumns = includeRowNumber ? config.columns.length + 1 : config.columns.length;
     if (config.data.length > 0) {
       ws['!autofilter'] = { 
         ref: XLSX.utils.encode_range({
           s: { r: 0, c: 0 },
-          e: { r: config.data.length, c: config.columns.length - 1 }
+          e: { r: config.data.length, c: totalColumns - 1 }
         })
       };
     }
