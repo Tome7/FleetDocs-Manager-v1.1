@@ -244,39 +244,37 @@ const Index = () => {
           </div>
         )}
 
-        {/* Tabs Navigation - Horizontal Layout */}
+        {/* Tabs Navigation - Vertical Layout */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <div className="bg-card border border-border rounded-xl p-1.5 mb-6 shadow-sm">
-            <TabsList className="grid grid-cols-2 lg:grid-cols-4 w-full h-auto gap-2 bg-transparent">
+          <div className="bg-card border border-border rounded-xl p-2 mb-6 shadow-sm">
+            <TabsList className="flex flex-col w-full h-auto gap-1 bg-transparent">
               <TabsTrigger 
                 value="vehicles" 
-                className="flex items-center justify-center gap-2 py-3 px-4 rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md transition-all duration-200 hover:bg-muted"
+                className="flex items-center justify-start gap-3 w-full py-3 px-4 rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md transition-all duration-200 hover:bg-muted"
               >
                 <Car className="h-5 w-5" />
                 <span className="font-medium">{t('navigation.vehicles')}</span>
               </TabsTrigger>
               <TabsTrigger 
                 value="drivers" 
-                className="flex items-center justify-center gap-2 py-3 px-4 rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md transition-all duration-200 hover:bg-muted"
+                className="flex items-center justify-start gap-3 w-full py-3 px-4 rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md transition-all duration-200 hover:bg-muted"
               >
                 <Users className="h-5 w-5" />
                 <span className="font-medium">{t('navigation.drivers')}</span>
               </TabsTrigger>
               <TabsTrigger 
                 value="document-delivery" 
-                className="flex items-center justify-center gap-2 py-3 px-4 rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md transition-all duration-200 hover:bg-muted"
+                className="flex items-center justify-start gap-3 w-full py-3 px-4 rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md transition-all duration-200 hover:bg-muted"
               >
                 <FileStack className="h-5 w-5" />
-                <span className="font-medium hidden sm:inline">{t('navigation.documentDelivery')}</span>
-                <span className="font-medium sm:hidden">Entregas</span>
+                <span className="font-medium">{t('navigation.documentDelivery')}</span>
               </TabsTrigger>
               <TabsTrigger 
                 value="inspections" 
-                className="flex items-center justify-center gap-2 py-3 px-4 rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md transition-all duration-200 hover:bg-muted"
+                className="flex items-center justify-start gap-3 w-full py-3 px-4 rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md transition-all duration-200 hover:bg-muted"
               >
                 <ClipboardCheck className="h-5 w-5" />
-                <span className="font-medium hidden sm:inline">{t('navigation.inspections')}</span>
-                <span className="font-medium sm:hidden">Inspeções</span>
+                <span className="font-medium">{t('navigation.inspections')}</span>
               </TabsTrigger>
             </TabsList>
           </div>
