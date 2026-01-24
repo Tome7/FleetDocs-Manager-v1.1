@@ -23,6 +23,8 @@ interface AppSidebarProps {
   onShowReports: () => void;
   onShowCharts: () => void;
   showCharts: boolean;
+  onShowAlerts: () => void;
+  showAlerts: boolean;
 }
 
 export function AppSidebar({ 
@@ -31,7 +33,9 @@ export function AppSidebar({
   alertCount = 0,
   onShowReports,
   onShowCharts,
-  showCharts
+  showCharts,
+  onShowAlerts,
+  showAlerts
 }: AppSidebarProps) {
   const { t } = useTranslation();
   const { state, toggleSidebar } = useSidebar();
@@ -175,27 +179,35 @@ export function AppSidebar({
                 </SidebarMenuButton>
               </SidebarMenuItem>
 
-              {alertCount > 0 && (
-                <SidebarMenuItem>
-                  <SidebarMenuButton
-                    className={cn(
-                      "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200",
-                      "bg-destructive/10 text-destructive hover:bg-destructive/20"
-                    )}
-                    tooltip={isCollapsed ? `${alertCount} Alertas` : undefined}
-                  >
-                    <div className="relative">
-                      <Bell className="h-5 w-5 shrink-0" />
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  onClick={onShowAlerts}
+                  className={cn(
+                    "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200",
+                    "hover:bg-muted",
+                    showAlerts 
+                      ? "bg-destructive/20 text-destructive" 
+                      : alertCount > 0 
+                        ? "bg-destructive/10 text-destructive hover:bg-destructive/20"
+                        : "text-muted-foreground hover:text-foreground"
+                  )}
+                  tooltip={isCollapsed ? (alertCount > 0 ? `${alertCount} Alertas` : 'Alertas') : undefined}
+                >
+                  <div className="relative">
+                    <Bell className="h-5 w-5 shrink-0" />
+                    {alertCount > 0 && (
                       <span className="absolute -top-1 -right-1 h-3 w-3 bg-destructive rounded-full text-[8px] flex items-center justify-center text-destructive-foreground font-bold">
                         {alertCount > 9 ? '9+' : alertCount}
                       </span>
-                    </div>
-                    {!isCollapsed && (
-                      <span className="font-medium truncate">{alertCount} Alertas</span>
                     )}
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              )}
+                  </div>
+                  {!isCollapsed && (
+                    <span className="font-medium truncate">
+                      {alertCount > 0 ? `${alertCount} Alertas` : 'Alertas'}
+                    </span>
+                  )}
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

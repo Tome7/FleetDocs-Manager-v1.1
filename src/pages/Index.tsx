@@ -51,6 +51,7 @@ const Index = () => {
   const [showDriverForm, setShowDriverForm] = useState(false);
   const [showReports, setShowReports] = useState(false);
   const [showCharts, setShowCharts] = useState(false);
+  const [showAlerts, setShowAlerts] = useState(false);
   
   const [searchTerm, setSearchTerm] = useState("");
   const [vehicleStatusFilter, setVehicleStatusFilter] = useState("all");
@@ -180,11 +181,16 @@ const Index = () => {
         {/* Sidebar */}
         <AppSidebar 
           activeTab={activeTab}
-          onTabChange={setActiveTab}
+          onTabChange={(tab) => {
+            setActiveTab(tab);
+            setShowAlerts(false);
+          }}
           alertCount={alerts?.length || 0}
           onShowReports={() => setShowReports(true)}
           onShowCharts={() => setShowCharts(!showCharts)}
           showCharts={showCharts}
+          onShowAlerts={() => setShowAlerts(!showAlerts)}
+          showAlerts={showAlerts}
         />
 
         {/* Main Content Area */}
@@ -243,8 +249,8 @@ const Index = () => {
               <DashboardCharts vehicles={vehicles || []} />
             )}
 
-            {/* Alerts Section */}
-            {alerts && alerts.length > 0 && (
+            {/* Alerts Section - Only shown when alerts button is clicked */}
+            {showAlerts && (
               <div className="mb-6">
                 <AlertsPanel />
               </div>
