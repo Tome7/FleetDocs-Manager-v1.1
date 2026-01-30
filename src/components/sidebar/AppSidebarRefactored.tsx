@@ -50,6 +50,12 @@ export function AppSidebarRefactored({
   const { state, toggleSidebar } = useSidebar();
   const isCollapsed = state === "collapsed";
 
+  // Define classes for styling based on theme
+  const sidebarBgClass = "bg-white"; // Changed from bg-sidebar to white
+  const navItemActiveClass = "bg-primary text-primary-foreground shadow-md font-semibold";
+  const navItemInactiveClass = "text-foreground hover:text-primary hover:bg-accent";
+  const navItemInactiveAlertClass = "bg-warning/20 text-warning border border-warning/30";
+
   // Main navigation items
   const navigationItems: NavigationItem[] = [
     { 
@@ -87,22 +93,23 @@ export function AppSidebarRefactored({
   return (
     <Sidebar 
       className={cn(
-        "border-r-0 transition-all duration-300 ease-out",
-        "bg-gradient-to-b from-primary to-[hsl(220,85%,45%)]",
-        "shadow-sidebar"
+        "border-r border-input transition-all duration-300 ease-out",
+        sidebarBgClass, // Using dynamic class
+        "text-sidebar-foreground",
+        "shadow-sm"
       )}
       collapsible="icon"
     >
       {/* Header */}
-      <SidebarHeader className="border-b border-white/15 p-4">
+      <SidebarHeader className="border-b border-border p-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-lg">
-              <Car className="h-5 w-5 text-white" />
+            <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center shadow-sm">
+              <Car className="h-5 w-5 text-primary" />
             </div>
             <div className="hidden lg:block animate-fade-in">
-              <h2 className="font-bold text-white text-base tracking-tight">FleetDocs</h2>
-              <p className="text-xs text-white/70 font-medium">Manager Pro</p>
+              <h2 className="font-bold text-sidebar-foreground text-base tracking-tight">FleetDocs</h2>
+              <p className="text-xs text-sidebar-foreground/70 font-medium">Manager Pro</p>
             </div>
           </div>
         </div>
@@ -110,7 +117,7 @@ export function AppSidebarRefactored({
           variant="ghost"
           size="icon"
           onClick={toggleSidebar}
-          className="hidden lg:flex h-7 w-7 absolute top-4 right-3 bg-white/10 hover:bg-white/25 text-white rounded-full transition-all duration-300"
+          className="hidden lg:flex h-7 w-7 absolute top-4 right-3 bg-muted hover:bg-accent text-foreground rounded-full transition-all duration-300"
         >
           {isCollapsed ? (
             <ChevronRight className="h-4 w-4" />
@@ -124,7 +131,7 @@ export function AppSidebarRefactored({
         {/* Main Navigation */}
         <SidebarGroup>
           {!isCollapsed && (
-            <SidebarGroupLabel className="text-[10px] font-bold text-white/50 uppercase tracking-widest px-3 py-2 mb-1 hidden lg:block">
+            <SidebarGroupLabel className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest px-3 py-2 mb-1 hidden lg:block">
               {t('navigation.title') || 'Navegação'}
             </SidebarGroupLabel>
           )}
@@ -143,8 +150,8 @@ export function AppSidebarRefactored({
                       className={cn(
                         "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 group",
                         isActive 
-                          ? "bg-white text-primary shadow-md font-semibold" 
-                          : "text-white/80 hover:text-white hover:bg-white/15"
+                          ? navItemActiveClass // Using dynamic class
+                          : navItemInactiveClass // Using dynamic class
                       )}
                       tooltip={isCollapsed ? item.title : undefined}
                     >
@@ -158,7 +165,7 @@ export function AppSidebarRefactored({
                       </span>
 
                       {isActive && (
-                        <div className="ml-auto w-1.5 h-1.5 rounded-full bg-primary hidden lg:block" />
+                        <div className="ml-auto w-1.5 h-1.5 rounded-full bg-primary-foreground hidden lg:block" />
                       )}
                     </SidebarMenuButton>
                   </SidebarMenuItem>
@@ -170,7 +177,7 @@ export function AppSidebarRefactored({
 
         <SidebarGroup className="mt-6">
           {!isCollapsed && (
-            <SidebarGroupLabel className="text-[10px] font-bold text-white/50 uppercase tracking-widest px-3 py-2 mb-1 hidden lg:block">
+            <SidebarGroupLabel className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest px-3 py-2 mb-1 hidden lg:block">
               {t('navigation.tools') || 'Ferramentas'}
             </SidebarGroupLabel>
           )}
@@ -183,10 +190,10 @@ export function AppSidebarRefactored({
                   className={cn(
                     "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 group",
                     activeTab === 'alerts' 
-                      ? "bg-white text-expired shadow-md font-semibold" 
+                      ? "bg-expired text-expired-foreground shadow-md font-semibold" 
                       : alertCount > 0 
-                        ? "bg-white/20 text-white border border-white/30"
-                        : "text-white/80 hover:text-white hover:bg-white/15"
+                        ? navItemInactiveAlertClass // Using dynamic class
+                        : navItemInactiveClass // Using dynamic class
                   )}
                   tooltip={isCollapsed ? (alertCount > 0 ? `${alertCount} Alertas` : 'Alertas') : undefined}
                 >
@@ -199,8 +206,8 @@ export function AppSidebarRefactored({
                       <span className={cn(
                         "absolute -top-1.5 -right-1.5 min-w-[16px] h-4 px-1 rounded-full text-[10px] flex items-center justify-center font-bold",
                         activeTab === 'alerts' 
-                          ? "bg-expired text-white" 
-                          : "bg-white text-expired"
+                          ? "bg-expired-foreground text-expired" 
+                          : "bg-warning text-warning-foreground"
                       )}>
                         {alertCount > 99 ? '99+' : alertCount}
                       </span>
@@ -218,7 +225,7 @@ export function AppSidebarRefactored({
                   onClick={onShowReports}
                   className={cn(
                     "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 group",
-                    "text-white/80 hover:text-white hover:bg-white/15"
+                    navItemInactiveClass // Using dynamic class
                   )}
                   tooltip={isCollapsed ? t('reports.title') : undefined}
                 >
@@ -232,18 +239,18 @@ export function AppSidebarRefactored({
       </SidebarContent>
 
       {/* Footer */}
-      <SidebarFooter className="border-t border-white/15 p-4">
+      <SidebarFooter className="border-t border-border p-4">
         <div className="hidden lg:block text-center">
-          <p className="text-[10px] text-white/50 font-medium">
+          <p className="text-[10px] text-muted-foreground font-medium">
             © 2024 FleetDocs Manager
           </p>
           <div className="flex items-center justify-center gap-1.5 mt-1">
-            <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-[10px] text-white/60">Sistema Ativo</span>
+            <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+            <span className="text-[10px] text-muted-foreground">Sistema Ativo</span>
           </div>
         </div>
         <div className="flex lg:hidden justify-center">
-          <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+          <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
         </div>
       </SidebarFooter>
     </Sidebar>

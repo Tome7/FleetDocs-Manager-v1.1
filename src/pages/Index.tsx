@@ -197,7 +197,7 @@ const Index = () => {
 
   return (
     <SidebarProvider defaultOpen={true}>
-      <div className="min-h-screen w-full flex bg-background">
+      <div className="flex min-h-screen w-full bg-background has-[[data-variant=inset]]:bg-sidebar">
         {/* Sidebar */}
         <AppSidebarRefactored 
           activeTab={activeTab}
@@ -206,19 +206,19 @@ const Index = () => {
           onShowReports={() => setShowReports(true)}
         />
 
-        {/* Main Content Area - Uses flex-1 to fill remaining space */}
-        <div className="flex-1 min-h-screen flex flex-col transition-all duration-300">
+        {/* Main Content Area */}
+        <main className="flex flex-1 flex-col min-h-svh w-full overflow-hidden lg:pl-0">
           {/* Header */}
-          <header className="sticky top-0 z-30 bg-white border-b border-border/50 shadow-sm">
-            <div className="px-6 py-4">
+          <header className="sticky top-0 z-10 bg-white border-b border-border shadow-sm">
+            <div className="px-4 sm:px-6 py-3">
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3 sm:gap-4">
                   <SidebarTrigger className="lg:hidden text-foreground hover:bg-muted rounded-lg p-2">
                     <Menu className="h-5 w-5" />
                   </SidebarTrigger>
                   <div>
-                    <h1 className="text-xl font-bold text-foreground">{getTabTitle()}</h1>
-                    <p className="text-sm text-muted-foreground hidden sm:block">
+                    <h1 className="text-lg sm:text-xl font-bold text-foreground">{getTabTitle()}</h1>
+                    <p className="text-xs sm:text-sm text-muted-foreground">
                       {t('header.subtitle')}
                     </p>
                   </div>
@@ -228,8 +228,8 @@ const Index = () => {
                   <LanguageSelector />
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" size="icon" className="rounded-full hover:bg-primary/10">
-                        <User className="h-5 w-5 text-primary" />
+                      <Button variant="ghost" size="icon" className="rounded-full hover:bg-accent">
+                        <User className="h-5 w-5 text-foreground" />
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" className="w-56">
@@ -253,7 +253,7 @@ const Index = () => {
           </header>
 
           {/* Main Content */}
-          <main className="flex-1 overflow-auto p-4 lg:p-6">
+          <div className="flex-1 overflow-y-auto p-3 sm:p-4 lg:p-6">
             
             {/* Dashboard Tab */}
             {activeTab === "dashboard" && (
@@ -262,21 +262,25 @@ const Index = () => {
 
             {/* Alerts Tab */}
             {activeTab === "alerts" && (
-              <div className="max-w-4xl">
+              <div className="max-w-4xl mx-auto w-full">
                 <AlertsPanelRefactored />
               </div>
             )}
 
             {/* Vehicles Tab */}
             {activeTab === "vehicles" && (
-              <div className="space-y-6">
-                <div className="flex items-center justify-between">
+              <div className="space-y-4 sm:space-y-6">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0">
                   <div>
-                    <h2 className="text-2xl font-bold mb-1">{t('vehicles.title')}</h2>
+                    <h2 className="text-xl sm:text-2xl font-bold mb-1">{t('vehicles.title')}</h2>
                     <p className="text-sm text-muted-foreground">
                       {t('vehicles.subtitle')}
                     </p>
                   </div>
+                  <Button className="sm:hidden w-full" onClick={() => setShowVehicleForm(true)}>
+                    <Plus className="h-4 w-4 mr-2" />
+                    {t('vehicles.addVehicle')}
+                  </Button>
                   <Button className="hidden sm:flex" onClick={() => setShowVehicleForm(true)}>
                     <Plus className="h-4 w-4 mr-2" />
                     {t('vehicles.addVehicle')}
@@ -291,7 +295,7 @@ const Index = () => {
                   onStatusChange={setVehicleStatusFilter}
                 />
 
-                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-4">
                   {filteredVehicles && filteredVehicles.length > 0 ? (
                     filteredVehicles.map((vehicle: any) => (
                       <VehicleCard 
@@ -323,14 +327,18 @@ const Index = () => {
 
             {/* Drivers Tab */}
             {activeTab === "drivers" && (
-              <div className="space-y-6">
-                <div className="flex items-center justify-between">
+              <div className="space-y-4 sm:space-y-6">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0">
                   <div>
-                    <h2 className="text-2xl font-bold mb-1">{t('drivers.title')}</h2>
+                    <h2 className="text-xl sm:text-2xl font-bold mb-1">{t('drivers.title')}</h2>
                     <p className="text-sm text-muted-foreground">
                       {t('drivers.subtitle')} • <strong>{drivers?.length || 0}</strong> {t('drivers.registered')}
                     </p>
                   </div>
+                  <Button className="sm:hidden w-full" onClick={() => setShowDriverForm(true)}>
+                    <Plus className="h-4 w-4 mr-2" />
+                    {t('drivers.addDriver')}
+                  </Button>
                   <Button className="hidden sm:flex" onClick={() => setShowDriverForm(true)}>
                     <Plus className="h-4 w-4 mr-2" />
                     {t('drivers.addDriver')}
@@ -339,7 +347,7 @@ const Index = () => {
 
                 <SearchBar value={searchTerm} onChange={setSearchTerm} placeholder={t('drivers.searchPlaceholder')} />
 
-                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-4">
                   {filteredDrivers && filteredDrivers.length > 0 ? (
                     filteredDrivers.map((driver: any) => (
                       <DriverCard 
@@ -380,8 +388,8 @@ const Index = () => {
             {activeTab === "inspections" && (
               <PostTripInspectionList />
             )}
-          </main>
-        </div>
+          </div>
+        </main>
 
         {/* Modals */}
         <VehicleForm 
@@ -427,11 +435,8 @@ const Index = () => {
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogCancel>{t('common.cancel')}</AlertDialogCancel>
-              <AlertDialogAction 
-                onClick={() => deletingVehicleId && deleteVehicleMutation.mutate(deletingVehicleId)}
-                className="bg-destructive hover:bg-destructive/90"
-              >
-                {t('common.delete')}
+              <AlertDialogAction onClick={() => deleteVehicleMutation.mutate(deletingVehicleId!)}>
+                {t('common.confirm')}
               </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
@@ -460,6 +465,9 @@ const Index = () => {
       </div>
     </SidebarProvider>
   );
+};
+
+export default Index;
 };
 
 export default Index;

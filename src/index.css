@@ -9,64 +9,64 @@ All colors MUST be HSL.
 @layer base {
   :root {
     /* Clean White & Blue Theme */
-    --background: 210 40% 98%;
-    --foreground: 215 25% 20%;
+    --background: 210 40% 98%; /* Light blue tint background */
+    --foreground: 215 25% 15%; /* Darker blue-gray text */
 
     --card: 0 0% 100%;
-    --card-foreground: 215 25% 20%;
+    --card-foreground: 215 25% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 215 25% 20%;
+    --popover-foreground: 215 25% 15%;
 
-    --primary: 215 90% 50%;
+    --primary: 215 90% 45%; /* Deep blue */
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 215 100% 60%;
+    --primary-glow: 215 100% 60%; /* Lighter blue for glow effects */
 
-    --secondary: 210 20% 96%;
-    --secondary-foreground: 215 25% 25%;
+    --secondary: 210 25% 92%; /* Light blue-gray */
+    --secondary-foreground: 215 25% 20%;
 
-    --muted: 210 20% 96%;
-    --muted-foreground: 215 15% 50%;
+    --muted: 210 25% 95%; /* Lighter blue-gray */
+    --muted-foreground: 215 15% 40%;
 
-    --accent: 215 90% 95%;
-    --accent-foreground: 215 90% 40%;
+    --accent: 215 90% 95%; /* Very light blue */
+    --accent-foreground: 215 90% 35%;
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
 
-    --success: 150 70% 40%;
+    --success: 150 70% 35%; /* Green */
     --success-foreground: 0 0% 100%;
 
-    --warning: 40 95% 50%;
+    --warning: 40 95% 50%; /* Orange */
     --warning-foreground: 0 0% 100%;
 
-    --expired: 0 75% 55%;
+    --expired: 0 75% 55%; /* Red */
     --expired-foreground: 0 0% 100%;
 
-    --border: 215 25% 90%;
-    --input: 215 25% 90%;
-    --ring: 215 90% 50%;
+    --border: 215 25% 85%; /* Medium blue-gray */
+    --input: 215 25% 85%;
+    --ring: 215 90% 45%; /* Same as primary */
 
     --radius: 0.75rem;
 
-    /* Sidebar - Clean Blue Theme */
-    --sidebar-bg: 215 90% 50%;
-    --sidebar-bg-end: 220 85% 45%;
-    --sidebar-gradient-start: 215 90% 50%;
-    --sidebar-gradient-end: 220 85% 45%;
-    --sidebar-border: 215 90% 60%;
-    --sidebar-item-hover: 215 90% 55%;
-    --sidebar-item-active: 0 0% 100%;
+    /* Sidebar - Clean White Theme */
+    --sidebar-bg: 0 0% 100%; /* Pure white */
+    --sidebar-bg-end: 0 0% 98%; /* Nearly white */
+    --sidebar-gradient-start: 0 0% 100%;
+    --sidebar-gradient-end: 0 0% 98%;
+    --sidebar-border: 215 25% 85%;
+    --sidebar-item-hover: 215 90% 95%;
+    --sidebar-item-active: 215 90% 45%;
     
     /* Premium Effects */
     --glass-bg: 0 0% 100% / 0.95;
-    --glass-border: 215 25% 90% / 0.5;
+    --glass-border: 215 25% 85% / 0.5;
     
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --shadow-card: 0 1px 3px 0 hsl(215 25% 20% / 0.05), 0 1px 2px -1px hsl(215 25% 20% / 0.05);
-    --shadow-card-hover: 0 10px 25px -5px hsl(215 90% 50% / 0.1), 0 8px 10px -6px hsl(215 90% 50% / 0.08);
-    --shadow-glow: 0 0 20px -5px hsl(215 90% 50% / 0.35);
-    --shadow-sidebar: 4px 0 15px -3px hsl(215 90% 50% / 0.2);
+    --shadow-card-hover: 0 10px 25px -5px hsl(215 90% 45% / 0.1), 0 8px 10px -6px hsl(215 90% 45% / 0.08);
+    --shadow-glow: 0 0 20px -5px hsl(215 90% 45% / 0.35);
+    --shadow-sidebar: 4px 0 15px -3px hsl(215 90% 45% / 0.1);
   }
 
   .dark {
