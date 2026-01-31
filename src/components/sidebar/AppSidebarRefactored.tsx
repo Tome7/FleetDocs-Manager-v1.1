@@ -242,7 +242,7 @@ export function AppSidebarRefactored({
       <SidebarFooter className="border-t border-border p-4">
         <div className="hidden lg:block text-center">
           <p className="text-[10px] text-muted-foreground font-medium">
-            © 2024 T&Y INTERNATIONAL
+            © 2026 T&Y INTERNATIONAL
           </p>
           <div className="flex items-center justify-center gap-1.5 mt-1">
             <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />

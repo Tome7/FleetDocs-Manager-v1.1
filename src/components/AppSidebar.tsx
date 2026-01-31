@@ -216,7 +216,7 @@ export function AppSidebar({
       <SidebarFooter className="border-t border-border p-4">
         {!isCollapsed && (
           <p className="text-xs text-muted-foreground text-center">
-            © 2024 T&Y INTERNATIONAL
+            © 2026 T&Y INTERNATIONAL
           </p>
         )}
       </SidebarFooter>
