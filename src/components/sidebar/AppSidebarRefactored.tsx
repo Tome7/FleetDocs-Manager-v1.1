@@ -9,6 +9,7 @@ import {
   ChevronRight,
   LayoutDashboard
 } from "lucide-react";
+import tyLogo from "@/components/image/meu-logo.png";
 import { useTranslation } from "react-i18next";
 import {
   Sidebar,
@@ -105,7 +106,7 @@ export function AppSidebarRefactored({
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center shadow-sm">
-              <Car className="h-5 w-5 text-primary" />
+              <img src={tyLogo} alt="T&Y Logo" className="h-6 w-6 object-contain" />
             </div>
             <div className="hidden lg:block animate-fade-in">
               <h2 className="font-bold text-sidebar-foreground text-base tracking-tight">T&Y</h2>
