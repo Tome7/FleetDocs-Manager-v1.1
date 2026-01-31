@@ -207,7 +207,7 @@ const Index = () => {
         />
 
         {/* Main Content Area */}
-        <main className="flex flex-1 flex-col min-h-svh w-full overflow-hidden lg:pl-0">
+        <main className="flex flex-1 flex-col min-h-svh w-full overflow-hidden lg:pl-0 max-w-full">
           {/* Header */}
           <header className="sticky top-0 z-10 bg-white border-b border-border shadow-sm">
             <div className="px-4 sm:px-6 py-3">
@@ -253,7 +253,7 @@ const Index = () => {
           </header>
 
           {/* Main Content */}
-          <div className="flex-1 overflow-y-auto p-3 sm:p-4 lg:p-6">
+          <div className="flex-1 overflow-y-auto p-3 sm:p-4 lg:p-6 max-w-full">
             
             {/* Dashboard Tab */}
             {activeTab === "dashboard" && (
@@ -295,7 +295,7 @@ const Index = () => {
                   onStatusChange={setVehicleStatusFilter}
                 />
 
-                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-4">
                   {filteredVehicles && filteredVehicles.length > 0 ? (
                     filteredVehicles.map((vehicle: any) => (
                       <VehicleCard 
@@ -347,7 +347,7 @@ const Index = () => {
 
                 <SearchBar value={searchTerm} onChange={setSearchTerm} placeholder={t('drivers.searchPlaceholder')} />
 
-                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-4">
                   {filteredDrivers && filteredDrivers.length > 0 ? (
                     filteredDrivers.map((driver: any) => (
                       <DriverCard 
