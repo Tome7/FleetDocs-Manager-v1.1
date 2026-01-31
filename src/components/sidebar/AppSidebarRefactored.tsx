@@ -108,8 +108,8 @@ export function AppSidebarRefactored({
               <Car className="h-5 w-5 text-primary" />
             </div>
             <div className="hidden lg:block animate-fade-in">
-              <h2 className="font-bold text-sidebar-foreground text-base tracking-tight">FleetDocs</h2>
-              <p className="text-xs text-sidebar-foreground/70 font-medium">Manager Pro</p>
+              <h2 className="font-bold text-sidebar-foreground text-base tracking-tight">T&Y</h2>
+              <p className="text-xs text-sidebar-foreground/70 font-medium">INTERNATIONAL</p>
             </div>
           </div>
         </div>
@@ -242,7 +242,7 @@ export function AppSidebarRefactored({
       <SidebarFooter className="border-t border-border p-4">
         <div className="hidden lg:block text-center">
           <p className="text-[10px] text-muted-foreground font-medium">
-            © 2024 FleetDocs Manager
+            © 2024 T&Y INTERNATIONAL
           </p>
           <div className="flex items-center justify-center gap-1.5 mt-1">
             <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />

@@ -80,8 +80,8 @@ export function AppSidebar({
                 <Car className="h-4 w-4 text-primary-foreground" />
               </div>
               <div>
-                <h2 className="font-bold text-foreground text-sm">FleetDocs</h2>
-                <p className="text-xs text-muted-foreground">Manager</p>
+                <h2 className="font-bold text-foreground text-sm">T&Y</h2>
+                <p className="text-xs text-muted-foreground">INTERNATIONAL</p>
               </div>
             </div>
           )}
@@ -216,7 +216,7 @@ export function AppSidebar({
       <SidebarFooter className="border-t border-border p-4">
         {!isCollapsed && (
           <p className="text-xs text-muted-foreground text-center">
-            © 2024 FleetDocs
+            © 2024 T&Y INTERNATIONAL
           </p>
         )}
       </SidebarFooter>

@@ -1,18 +1,64 @@
-```
-# Logs and temp files
-*.log
-*.tmp
-*.swp
+```gitignore
+# Dependencies
+node_modules/
+
+# Build artifacts
+dist/
+build/
+*.js.map
+*.tsbuildinfo
 
 # Environment
 .env
 .env.local
-.env.
+.env.*
 
 # Editors
 .vscode/
 .idea/
+*.swp
+*.swo
 
-# Dependencies
-node_modules/
+# Logs and temp files
+*.log
+*.tmp
+
+# Python (if applicable)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.git/modules/
+.DS_Store
+*.swp
+*~
+.pytest_cache/
+.hypothesis/
+.coverage*
+htmlcov/
+.pyup.yml
+.isort.cfg
+.tox/
+noxfile.py
+.coveragerc
+.pre-commit-config.yaml
+.flake8
+.mypy_cache/
+.pyre/
+.pytype/
+cython_debug/
 ```
