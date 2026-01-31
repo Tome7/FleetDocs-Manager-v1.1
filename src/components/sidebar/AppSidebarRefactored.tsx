@@ -93,7 +93,7 @@ export function AppSidebarRefactored({
   return (
     <Sidebar 
       className={cn(
-        "border-r border-input transition-all duration-300 ease-out",
+        "border-r border-input transition-all duration-300 ease-out max-w-full",
         sidebarBgClass, // Using dynamic class
         "text-sidebar-foreground",
         "shadow-sm"
