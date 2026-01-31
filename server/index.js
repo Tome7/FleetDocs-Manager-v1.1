@@ -6,6 +6,7 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import cron from 'node-cron';
 import pool from './config/database.js';
+import { cleanupInvalidAlerts } from './utils/cleanup-alerts.js'; // Import the cleanup utility
 import vehicleRoutes from './routes/vehicles.js';
 import documentRoutes from './routes/documents.js';
 import driverDocumentsRoutes from './routes/driver-documents.js';
@@ -69,7 +70,21 @@ cron.schedule('0 0 * * 1', async () => {
   timezone: "Africa/Maputo"
 });
 
+// Cron job para limpar alertas inválidos diariamente às 02:00
+cron.schedule('0 2 * * *', async () => {
+  console.log('Executando limpeza diária de alertas inválidos - Todos os dias às 02:00');
+  try {
+    await cleanupInvalidAlerts();
+  } catch (error) {
+    console.error('Erro na limpeza diária de alertas inválidos:', error);
+  }
+}, {
+  scheduled: true,
+  timezone: "Africa/Maputo"
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
   console.log('Cron job configurado: Limpeza de inspeções todas as segundas-feiras às 00:00');
+  console.log('Cron job configurado: Limpeza de alertas inválidos todos os dias às 02:00');
 });

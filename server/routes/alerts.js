@@ -200,11 +200,30 @@ router.post('/generate', authenticate, async (req, res) => {
          expiryDate = new Date(doc.expiry_date);
       }
 
-      // Validação de segurança
+      // Validação de segurança - garantir que a data é válida e não está muito distante no futuro
       if (isNaN(expiryDate.getTime())) return;
-
+      
+      // Adicionando validação adicional para evitar datas futuras excessivas
       const today = new Date();
       today.setHours(0,0,0,0); // Ignorar horas para cálculo preciso de dias
+      
+      // Limite razoável para datas futuras (por exemplo, não mais que 50 anos no futuro)
+      const maxFutureDate = new Date();
+      maxFutureDate.setFullYear(today.getFullYear() + 50);
+      
+      if (expiryDate > maxFutureDate) {
+        // Data está muito distante no futuro, provavelmente incorreta
+        return;
+      }
+      
+      // Verificar se a data de expiração é uma data realística (não muito antiga também)
+      const minValidDate = new Date();
+      minValidDate.setFullYear(1970); // Data mínima razoável
+      
+      if (expiryDate < minValidDate) {
+        // Data está muito distante no passado, provavelmente incorreta
+        return;
+      }
       
       // Diferença em dias
       const diffTime = expiryDate.getTime() - today.getTime();
@@ -213,6 +232,7 @@ router.post('/generate', authenticate, async (req, res) => {
       let alertType = null;
 
       // Lógica de cascata (do mais urgente para o menos urgente)
+      // Apenas processa se estiver dentro dos limites de alerta (30 dias no futuro ou expirado)
       if (daysUntilExpiry <= 0) alertType = 'expired';
       else if (daysUntilExpiry <= 3) alertType = '3_days';
       else if (daysUntilExpiry <= 7) alertType = '7_days';
