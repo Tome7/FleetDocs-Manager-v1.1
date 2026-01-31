@@ -165,10 +165,11 @@ export const DashboardCharts = ({ vehicles }: DashboardChartsProps) => {
                 data={documentStatusData}
                 cx="50%"
                 cy="50%"
-                innerRadius={50}
-                outerRadius={80}
-                paddingAngle={2}
+                innerRadius={55}
+                outerRadius={85}
+                paddingAngle={0}
                 dataKey="value"
+                cornerRadius={4}
               >
                 {documentStatusData.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={entry.color} />
@@ -199,10 +200,11 @@ export const DashboardCharts = ({ vehicles }: DashboardChartsProps) => {
                 data={vehicleStatusData}
                 cx="50%"
                 cy="50%"
-                innerRadius={50}
-                outerRadius={80}
-                paddingAngle={2}
+                innerRadius={55}
+                outerRadius={85}
+                paddingAngle={0}
                 dataKey="value"
+                cornerRadius={4}
               >
                 {vehicleStatusData.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={entry.color} />
@@ -233,10 +235,11 @@ export const DashboardCharts = ({ vehicles }: DashboardChartsProps) => {
                 data={driverStatusData}
                 cx="50%"
                 cy="50%"
-                innerRadius={50}
-                outerRadius={80}
-                paddingAngle={2}
+                innerRadius={55}
+                outerRadius={85}
+                paddingAngle={0}
                 dataKey="value"
+                cornerRadius={4}
               >
                 {driverStatusData.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={entry.color} />
